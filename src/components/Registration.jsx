@@ -8,15 +8,17 @@ export const Registration = () => {
         passwordConfirm: '',  
     })
 
+    const isValidEmail =()=>user.email.includes("@");
+
     const firstPartFromEmail = () => {
-        const indexOfAtSign = user.email.indexOf("@")        
-        return user.email.substring(0, indexOfAtSign)
+        if (!isValidEmail())
+            return null;
+        return user.email.substring(0, user.email.indexOf("@"))
     }
 
     const getUserName = () => {
-        const isValidEmail = user.email.includes("@")
         const isEmptyUserName = user.username == ''
-        return (isEmptyUserName && isValidEmail) ? firstPartFromEmail() : user.username
+        return (isEmptyUserName && isValidEmail()) ? firstPartFromEmail() : user.username
     }
 
     const passwordsMatch = () => {
