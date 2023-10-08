@@ -12,7 +12,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    liveReload: false,
+    liveReload: true,
     hot: false,
   },
   resolve: {
