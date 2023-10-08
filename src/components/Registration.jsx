@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 export const Registration = () => {
-
     const [user, setUser] = useState({
         username: '',
         email: '',
@@ -10,7 +9,7 @@ export const Registration = () => {
     })
 
     const firstPartFromEmail = () => {
-        const indexOfAtSign = user.email.indexOf("@")
+        const indexOfAtSign = user.email.indexOf("@")        
         return user.email.substring(0, indexOfAtSign)
     }
 
@@ -29,50 +28,33 @@ export const Registration = () => {
             <input
                 type='text'
                 value = {user.email}
-                onChange={(event) => {
-                    const input = event.target.value
-                    setUser({...user, email: input})
-                }}
-                onBlur={() => {
-                    const validEmail2 = user.email.includes("@")
-                    setUser({...user, username: getUserName()})
-                }}
+                onChange={(event) => setUser({...user, email: event.target.value})}
+                onBlur={() => setUser({...user, username: getUserName()})}
                 placeholder="Email Address"
             />
             <input
                 type='text'
                 value={user.username}
-                onChange={(event) => {
-                    const input = event.target.value;
-                    setUser({ ...user, username: input });
-                }}
+                onChange={(event) => setUser({ ...user, username: event.target.value })}
                 placeholder="User Name"
             />
-
             <input
                 type = "password"
                 value = {user.password}
-                onChange = {(event) => {
-                    const input = event.target.value
-                    setUser({...user, password: input})
-                }} 
+                onChange = {(event) => setUser({...user, password:event.target.value })} 
                 placeholder = "Password"           
             />
-
             <input
                 type = "password"
                 value = {user.passwordConfirm}
-                onChange = {(event) => {
-                    const input = event.target.value
-                    setUser({...user, passwordConfirm: input})
-                }}
+                onChange = {(event) => setUser({...user, passwordConfirm: event.target.value})}
                 placeholder = "Password confirm"
             />
 
             {!passwordsMatch() && user.passwordConfirm != '' && <div>Passwords do not match</div>}            
             
             <button 
-                onClick={() => passwordsMatch() ? console.log(user) : alert("Passwords do not match")}
+                onClick={() => passwordsMatch() ? console.log(user) : alert("Passwords do not match")}                
             >
                 REGISTER
             </button>                
